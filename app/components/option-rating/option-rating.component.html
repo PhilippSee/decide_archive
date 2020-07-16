@@ -1,0 +1,100 @@
+<h2>Option rating</h2>
+<p>Add the options you are considering and evaluate how far your criteria apply to the individual options. 
+    In addition, you can use the detail text field to further describe the option.
+    Then your option valuation is calculated using the criteria weighting.</p>
+ 
+<!-- <div> <!-- Input of a new option above the tabs.
+    <mat-form-field class="add_option" appearance="standard">
+        <mat-label>New option</mat-label>
+        <input matInput max="150" [formControl]="newOption">
+      </mat-form-field>
+    <button mat-raised-button class="example-add-tab-button" (click)="addOption()">Add new option</button>
+</div> -->
+
+<mat-tab-group mat-align-tabs="center" color="primary">
+    <mat-tab *ngFor="let option of options; let index = index" [label]="option">
+        <!-- <ng-template mat-tab-label> {{option}} <mat-icon style="margin: 12px;">edit</mat-icon> 
+        </ng-template> -->
+        
+        <mat-form-field class="option_tab" appearance="standard">
+            <mat-label>Details of {{option}}:</mat-label>
+            <textarea matInput #details maxlength="1200"></textarea>
+            <mat-hint>optional</mat-hint>
+            <mat-hint align="end">{{details.value.length}} / 1200</mat-hint>
+        </mat-form-field>
+        <br>
+
+        <div> <!-- *ngIf="this.hideCompareCard" -->
+            <mat-card class="rating-card">
+               <mat-card-header>
+               <mat-card-title>How much does {{ option }} serve the criterion: Power ?</mat-card-title>
+               <mat-card-subtitle>The evaluation takes place according to a point allocation system. 
+                   0 points means that the criterion does not apply to this option at all, 
+                   5 points means that the criterion fully applies to this option.</mat-card-subtitle>
+               </mat-card-header>
+               <mat-card-actions>
+                   it does not apply
+                    <mat-button-toggle-group>
+                        <mat-button-toggle value="0" aria-label="0">0</mat-button-toggle>
+                        <mat-button-toggle value="1" aria-label="1">1</mat-button-toggle>
+                        <mat-button-toggle value="2" aria-label="2">2</mat-button-toggle>
+                        <mat-button-toggle value="3" aria-label="3">3</mat-button-toggle>
+                        <mat-button-toggle value="4" aria-label="4">4</mat-button-toggle>
+                        <mat-button-toggle value="5" aria-label="5">5</mat-button-toggle>
+                    </mat-button-toggle-group>
+                    it fully applies
+               </mat-card-actions>
+            </mat-card>
+         </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="criteria">
+              <th mat-header-cell *matHeaderCellDef> Criteria </th>
+              <td mat-cell *matCellDef="let element"> {{element.criteria}} </td>
+            </ng-container>
+          
+            <!-- Weighting Column -->
+            <ng-container matColumnDef="weighting">
+              <th mat-header-cell *matHeaderCellDef> Weighting </th>
+              <td mat-cell *matCellDef="let element"> {{element.weighting}} </td>
+            </ng-container>
+          
+            <!-- Evaluation Column -->
+            <ng-container matColumnDef="evaluation">
+              <th mat-header-cell *matHeaderCellDef> Evaluation of {{ option }} </th>
+              <td mat-cell *matCellDef="let element"> {{element.evaluation}} </td>
+            </ng-container>
+
+            <!-- Weighted Assessment Column -->
+            <ng-container matColumnDef="weightedAssessment">
+                <th mat-header-cell *matHeaderCellDef> Weighted assessment </th>
+                <td mat-cell *matCellDef="let element"> {{element.weightedAssessment}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+          
+        <button mat-icon-button class="delete-option-button" 
+                color="warn" 
+                matTooltip="Delete {{option}}" 
+                (click)="removeOption(index)" 
+                style="float: right; margin-right: 5px;"> 
+                <mat-icon>delete_forever</mat-icon> 
+        </button>
+
+    </mat-tab>
+    <mat-tab disabled style="min-width: 0; padding: 0 12px;"> 
+        <ng-template mat-tab-label>
+            <input matInput max="100" [formControl]="newOption" placeholder="New option" floatLabel="never">
+            <button mat-icon-button (click)="addOption()"> 
+                <mat-icon>add_circle</mat-icon> 
+            </button>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,9 @@
+/* mat-grid-tile {
+    background: lightblue;
+  } */
+
+.result-card {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}

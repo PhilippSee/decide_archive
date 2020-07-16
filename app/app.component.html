@@ -1,0 +1,88 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 10px;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 82px auto 32px;
+  }
+
+  a, a:visited, a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+</style>
+
+
+<!-- Decide App -->
+
+<div class="content">
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    
+    <mat-step>
+      <ng-template matStepLabel>Criteria Selection</ng-template>
+      <div id="CriteriaSelection">
+        <app-criteria-input></app-criteria-input>
+      </div>
+      <div>
+        <div fxFlex></div>
+        <button mat-raised-button matStepperNext style="float: right; margin-right: 5px;">Next</button>
+      </div>
+    </mat-step>
+    
+    <mat-step>
+      <ng-template matStepLabel>Criteria Priorization</ng-template>
+      <div id="CriteriaPriorization">
+        <app-criteria-prio></app-criteria-prio>
+      </div>
+      <br> <br> <br>
+      <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext style="float: right; margin-right: 5px;">Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Option rating</ng-template>
+      <div id="OptionRating">
+        <app-option-rating></app-option-rating>
+      </div>
+      <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext style="float: right; margin-right: 5px;">Next</button>
+      </div>
+    </mat-step>
+    
+    <mat-step>
+      <ng-template matStepLabel>Decision template</ng-template>
+      <div id="DecisionTemplate">
+        <app-decision-template></app-decision-template>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button (click)="stepper.reset()">Restart</button>
+      </div>
+    </mat-step>
+    
+  </mat-horizontal-stepper>
+
+</div>

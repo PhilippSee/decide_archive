@@ -1,0 +1,25 @@
+<h2>Criteria selection</h2>
+<p>Type in all criteria that come into your mind and select the most relevant for next steps:</p>
+
+<mat-form-field class="criteria-list">
+  <input placeholder="New criteria..."
+  [matChipInputFor]="chipList"
+  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+  [matChipInputAddOnBlur]="addOnBlur"
+  (matChipInputTokenEnd)="add($event)">
+
+  <mat-chip-list #chipList aria-label="Criteria selection">
+  </mat-chip-list>
+</mat-form-field>
+
+<div style="margin: 30px;">
+  <mat-chip color="primary" *ngFor="let criteria of getCriteria()" [selectable]="selectable"
+            [removable]="removable" (removed)="remove(criteria)" (click)="select(criteria)" style="margin-right:15px;">
+    {{criteria.criteria}}
+    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+  </mat-chip>
+</div>
+
+<button mat-raised-button color="warn" (click)="getArrayRefurbishment()">
+  Create criteria table
+</button>

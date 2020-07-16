@@ -1,0 +1,53 @@
+.mat-tab-group {
+    margin-bottom: 48px;
+  }
+
+.example-input-label,
+.example-add-tab-button,
+.delete-option-button {
+  margin: 8px;
+}
+
+.add_option {
+  width: 30%;
+}
+
+.option_tab {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+table {
+  width: 70%;
+  margin: 8px 8px;
+  /*text-align: center;*/
+}
+
+button {
+  margin: 16px 8px;
+}
+
+.mat-tab-labels :last-child.mat-tab-label {       /* Where "my-component" is the html selector of your component. */
+  min-width: 0;
+  padding: 0 12px;
+  color: unset;
+  opacity: unset;
+}
+
+.mat-elevation-z8{
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 90%;
+  display: block; */
+}
+
+.rating-card {
+  max-width: 600px;
+  text-align: center;
+  /* justify-content: center; 
+  align-items: center; */
+  margin: 30px auto;
+
+}

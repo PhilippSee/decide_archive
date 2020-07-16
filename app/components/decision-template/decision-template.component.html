@@ -1,0 +1,21 @@
+<p style="float: right; padding: 2px; margin: 5px;"> {{ today | date }} </p> <br>
+
+<div>
+    <mat-grid-list cols="3" >  <!-- rowHeight="2:1" -->
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile>
+            <div> <!-- *ngIf="this.hideCompareCard" -->
+                <mat-card class="result-card" *ngFor="let option of options">
+                <mat-card-header>
+                <mat-card-title> {{option}} </mat-card-title>
+                <mat-card-subtitle>Details of {{option}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions>
+                        Total score 3,9
+                </mat-card-actions>
+                </mat-card>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

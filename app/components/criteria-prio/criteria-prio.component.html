@@ -1,0 +1,42 @@
+<h2>Criteria Priorization</h2>
+<p>You have selected <b>{{_globalData.globalCriteria.length}} criteria</b> 
+   <!-- ({{_globalData.globalCriterias.criteria}}) -->. 
+   Now you want to weight these criteria. You decide in a direct comparison of 
+   2 criteria which one is more important to you or whether they are equally important. With the current number 
+   of criteria selected, there will be <b>{{_globalData.numberComparison}} comparisons</b>.</p>
+
+<div *ngIf="this.hideCompareCard">
+   <mat-card class="prio-card">
+      <mat-card-header>
+      <mat-card-title>Select the criteria that is more relevant for you.</mat-card-title>
+      <mat-card-subtitle>Or click "equally important" if both have the same importance.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="SelectedCriteriaA(); calculateScore()" style="margin-right:5px;">{{this.criteriaCompareA}}</button>
+      <button mat-raised-button (click)="equallySelected(); calculateScore()" style="margin-right:5px;">equally important</button>
+      <button mat-raised-button color="primary" (click)="SelectedCriteriaB(); calculateScore()" style="margin-right:5px;">{{this.criteriaCompareB}}</button>
+      <button mat-mini-fab color="primary" (click)="SkipComparison(); calculateScore()" style="margin-right:5px;" *ngIf="aktivateSkip"><mat-icon>skip_next</mat-icon></button>
+      </mat-card-actions>
+   </mat-card>
+</div>
+
+<div style="margin: 30px;">
+   <button mat-stroked-button color="warn" (click)="restartCriteriaComparison()" style="float: right; margin-right: 5px;">Restart your comparison</button>
+</div>
+
+<br>
+<div style="margin: 30px;">
+   <h3>This table shows you the scoring of you criteria comparison:</h3>
+
+   <div class="container" *ngFor= "let cell of getTransposedArrayForTable()">    
+      <table class="table table-hover">
+         <tr>  
+            <td width= 13% *ngFor= "let i of getLenghtArrayForTable()">{{ cell[i] }}</td> 
+         </tr>
+      </table> 
+   </div>
+</div>
+
+<div style="margin: 30px;">
+   <button mat-raised-button (click)="exportToCSV()" style="float: right; margin-right: 15px;"><mat-icon >cloud_download</mat-icon> CSV download</button>
+</div>
